@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject explosionPrefab;
     public GameObject defendPrefeb;
     public Vector3 bulletEulerAngles;
-    private bool isDefended;
+    public bool isDefended;
     private float defendTimeVal = 3.0f;
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // 生成一个实例
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles + bulletEulerAngles));
+            GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles + bulletEulerAngles));
+            var bullet = obj.GetComponent<Bullet>();
+            bullet.srcTag = gameObject.tag;
         }
     }
 
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Dead()
+    public void Dead()
     {
         Destroy(gameObject);
         Instantiate(explosionPrefab, transform.position, transform.rotation);

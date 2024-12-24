@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private int bulletSpeed = 10;
+    public string srcTag = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,34 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {               
-        if (collision.tag == "Wall")
+        bool attactedAnything = true;
+        if (collision.tag ==  srcTag)
         {
-            Debug.Log("OnTriggerEnter2D" + collision.tag);
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-            
+            return;
+        }
+        switch (collision.tag)
+        {
+            case "Wall":
+                break;
+            case "Tank":
+                {
+                    Player player = collision.gameObject.GetComponent<Player>();
+                    if (player != null)
+                    {
+                        if (!player.isDefended)
+                        {
+                            player.Dead();
+                        }                        
+                    }                    
+                }
+                break;
+            default:
+                attactedAnything = false;
+                break;
+        }
+        if (attactedAnything)
+        {
+            Destroy(gameObject);       
         }
 
     }
