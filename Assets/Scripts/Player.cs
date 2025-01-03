@@ -27,9 +27,10 @@ public class Player : MonoBehaviour
         if (isDefended)
         {
             defendTimeVal -= Time.deltaTime;
-            if (defendTimeVal < 0) { 
-                defendTimeVal = 0; 
-                isDefended=false;
+            if (defendTimeVal < 0)
+            {
+                defendTimeVal = 0;
+                isDefended = false;
                 defendPrefeb.SetActive(false);
             }
         }

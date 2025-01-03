@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1081431292809278186}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +128,10 @@ MonoBehaviour:
   - {fileID: 21300032, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
   - {fileID: 21300048, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
   bulletPrefab: {fileID: 6632552869450126618, guid: fde9004cf9c11844ebb224a72cdaa17c, type: 3}
+  explosionPrefab: {fileID: 0}
+  defendPrefeb: {fileID: 0}
+  bulletEulerAngles: {x: 0, y: 0, z: 0}
+  isDefended: 0
 --- !u!61 &-1081431292809278186
 BoxCollider2D:
   m_ObjectHideFlags: 0

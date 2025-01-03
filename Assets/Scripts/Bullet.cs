@@ -10,7 +10,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("layout: " + spriteRenderer.sortingOrder);
     }
 
     // Update is called once per frame
@@ -22,13 +23,18 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {               
         bool attactedAnything = true;
-        if (collision.tag ==  srcTag)
+        Debug.Log("OnTriggerEnter2D" + collision.tag);
+        Debug.Log("SrcTag:" + srcTag);
+        if (collision.tag == srcTag)
         {
             return;
         }
         switch (collision.tag)
         {
             case "Wall":
+                {
+                    Destroy(collision.gameObject);
+                }
                 break;
             case "Tank":
                 {
@@ -42,6 +48,16 @@ public class Bullet : MonoBehaviour
                     }                    
                 }
                 break;
+            case "Heart":
+                {
+                    Heart heart = collision.gameObject.GetComponent<Heart>();
+                    if (heart != null)
+                    {
+                        heart.Dead();
+                    }
+                }
+                break;
+
             default:
                 attactedAnything = false;
                 break;
